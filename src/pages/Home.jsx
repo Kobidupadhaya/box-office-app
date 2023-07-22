@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { searchForShows , searchForpeople } from './../api/tvmaze';
 import SearchForm from '../components/SearchForm';
-
+import ShowGrid from '../components/shows/ShowGrid';
+import ActorsGrid from '../components/actors/ActorsGrid';
 const Home = () => {
 const [apiData, setApiData] = useState(null);
  const [apiDataError, setApiDataError] = useState(null);
@@ -11,13 +12,15 @@ const [apiData, setApiData] = useState(null);
     try {
      setApiDataError(null);
 
+     let result;
+
       if (searchOption ==='shows'){
-      const result = await searchForShows(q);
-      setApiData(result);
+       result = await searchForShows(q);
+  
       }else{
-        const result = await searchForpeople(q);
-        setApiData(result);
-      }
+         result = await searchForpeople(q);
+             }
+             setApiData(result);
     } catch (error) {
       setApiDataError(error);
     }
@@ -26,12 +29,17 @@ const [apiData, setApiData] = useState(null);
     if (apiDataError) {
       return <div>Error occured:{apiDataError.message}</div>;
     }
+
+    if (apiData?.length === 0){
+      return<div>No results</div>
+
+    }
     if (apiData) {
-      return apiData[0].show
-      ? apiData.map(data=> <div key ={data.show.id}>{data.show.name}</div>)
-      :apiData.map(data=>(
-        <div key ={data.person.id}>{data.person.name}</div>
-      ));
+      return apiData[0].show ? (
+      <ShowGrid shows={apiData}/>
+      ):(
+      <ActorsGrid actors={apiData}/>
+      );
     }
     return null;
   };
