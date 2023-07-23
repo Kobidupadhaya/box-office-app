@@ -5,6 +5,7 @@ import Starred from './pages/Starred';
 import MainLayout from './components/MainLayout';
 import Show from './pages/Show';
 function App() {
+  
   return (
     <BrowserRouter>
       <Routes>
