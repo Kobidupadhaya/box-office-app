@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 
-import {  useParams } from 'react-router-dom';
+import {  Link, useParams } from 'react-router-dom';
 import { getShowById } from '../api/tvmaze';
 import {  useQuery } from '@tanstack/react-query';
 import ShowMainData from '../components/shows/ShowMainData';
@@ -14,12 +15,16 @@ const Show = () => {
   queryFn: () => getShowById(showId),
   refetchOnWindowFocus: false,
 });
+
   if (showError){
         return<div> we have an error: {showError.message}</div>;
-    } 
+    } ;
      if (showData){
         return(
           <div>
+
+           <Link to="/"Go Back To Home></Link>
+
             <ShowMainData  image ={showData.image} name ={showData.name} rating ={showData.rating} summary={showData.summary}  genres={showData.genres}/>
 
              <div>
