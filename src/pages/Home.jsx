@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { useState , } from 'react';
+import { useState  } from 'react';
 import { searchForShows , searchForpeople } from './../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
