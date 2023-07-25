@@ -1,33 +1,11 @@
 /* eslint-disable default-case */
-import { useReducer, useEffect } from "react";
+
 import ShowCard from "./Showcard";
+import { useStarredShows } from "../lib/useStarredShows";
 
-const usePersistedReducer =(reducer, initialState, localStoragekey)=>{
-  const [state,dispatch]=useReducer (reducer, initialState, (initial)=>{
-const PersistedValue = localStorage.getItem(localStoragekey)
-
-return PersistedValue ? JSON.parse(PersistedValue) : initial;
-  });
-
-useEffect ( ()=>{
-  localStorage.setItem(localStoragekey, JSON.stringify(state))
-},[state,localStoragekey])
-
-return[state,dispatch];
-};
-
-const starredShowsReducer =(currentStarred, action)=>{
-switch (action.type){
-    case 'STAR': return currentStarred.concat(action.showId)
-    case 'UNSTAR': return currentStarred.filter((showId)=>showId !== action.showId)
-    default:
-      return currentStarred;
-  }
-};
 
 const ShowGrid =({shows})=>{
-   const [starredShows,dispatchStarred]=usePersistedReducer (starredShowsReducer, [], 'starredShows');
-
+    const [starredShows, dispatchStarred] = useStarredShows()
 
    const onStarMeClick = (showId)=> {
      const isStarred =starredShows.includes(showId);
@@ -48,6 +26,7 @@ const ShowGrid =({shows})=>{
     
     summary={data.show.summary}
     onStarMeClick={onStarMeClick}
+    isStarred ={starredShows.includes(data.show.id)}
     />
   ))}
   </div>
