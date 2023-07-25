@@ -1,11 +1,16 @@
-import { useState } from 'react';
+/* eslint-disable default-case */
+import { useState , } from 'react';
 import { searchForShows , searchForpeople } from './../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
 import { useQuery } from '@tanstack/react-query';
+
 const Home = () => {
   const [filter,setFilter] = useState(null);
+
+  
+
 
   const {data : apiData,error : apiDataError} = useQuery({
 
@@ -44,7 +49,7 @@ const onSearch = async ({q,searchOption})  => {
     <div>
       <SearchForm onSearch={onSearch}/>
      
-      <div>{renderApiData()}</div>
+           <div>{renderApiData()}</div>
     </div>
   );
 };
