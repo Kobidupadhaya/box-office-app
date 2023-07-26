@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+
 import { useReducer, useEffect } from "react";
 const usePersistedReducer =(reducer, initialState, localStoragekey)=>{
     const [state,dispatch]=useReducer (reducer, initialState, (initial)=>{
