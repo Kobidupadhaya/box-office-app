@@ -20,7 +20,7 @@ const SearchForm = ({onSearch})=>{
       searchOption
      }
      onSearch(options);
-    }
+    };
   return (
     <form onSubmit={onsubmit}>
         <SearchInput 
@@ -34,14 +34,14 @@ const SearchForm = ({onSearch})=>{
         label ="Shows"
         name = "search-option" 
         value="shows" 
-        checked={searchOption === "shows"}
+        checked={searchOption === 'shows'}
          onChange={onRadioChange}
         />
            <CustomRadio
         label ="Actors"
         name = "search-option"
         value="actors"
-         checked={searchOption === "actors"}
+         checked={searchOption === 'actors'}
          onChange={onRadioChange}
         />
         </RadiosWrapper>

@@ -1,14 +1,12 @@
-
-  import styled from "styled-components";
-
+import styled from "styled-components";
 
 const CustomRadio= ({ label , ...inputProps}) => {
     
         return(
         <StyledRadio> 
             {label}
-      <input {...inputProps} type=" radio"/>
-      <span/>
+      <input {...inputProps} type="radio"/>
+      <span> </span>
        </StyledRadio>
         );
 };
